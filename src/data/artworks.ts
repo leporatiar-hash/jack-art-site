@@ -68,6 +68,66 @@ export const artworks: Artwork[] = [
     title: "Tree Figure Collage",
     image: "/art/tree-figure-collage.png",
   },
+  {
+    slug: "split-figures-collage",
+    // TODO: confirm title, year, medium — filename used as placeholder title.
+    title: "Split Figures Collage",
+    image: "/art/split-figures-collage.png",
+  },
+  {
+    slug: "one-eyed-creature",
+    // TODO: confirm title, year, medium — filename used as placeholder title.
+    title: "One-Eyed Creature",
+    image: "/art/one-eyed-creature.png",
+  },
+  {
+    slug: "hooded-figure-maze",
+    // TODO: confirm title, year, medium — filename used as placeholder title.
+    title: "Hooded Figure Maze",
+    image: "/art/hooded-figure-maze.png",
+  },
+  {
+    slug: "red-totem-figure",
+    // TODO: confirm title, year, medium — filename used as placeholder title.
+    title: "Red Totem Figure",
+    image: "/art/red-totem-figure.png",
+  },
+  {
+    slug: "mandala-figure-scene",
+    // TODO: confirm title, year, medium — filename used as placeholder title.
+    title: "Mandala Figure Scene",
+    image: "/art/mandala-figure-scene.png",
+  },
+  {
+    slug: "crowned-creature",
+    // TODO: confirm title, year, medium — filename used as placeholder title.
+    title: "Crowned Creature",
+    image: "/art/crowned-creature.png",
+  },
+  {
+    slug: "unicycle-figure",
+    // TODO: confirm title, year, medium — filename used as placeholder title.
+    title: "Unicycle Figure",
+    image: "/art/unicycle-figure.png",
+  },
+  {
+    slug: "split-face-portrait",
+    // TODO: confirm title, year, medium — filename used as placeholder title.
+    title: "Split Face Portrait",
+    image: "/art/split-face-portrait.png",
+  },
+  {
+    slug: "wounded-hand",
+    // TODO: confirm title, year, medium — filename used as placeholder title.
+    title: "Wounded Hand",
+    image: "/art/wounded-hand.png",
+  },
+  {
+    slug: "segmented-limb-sculpture",
+    // TODO: confirm title, year, medium — filename used as placeholder title.
+    title: "Segmented Limb Sculpture",
+    image: "/art/segmented-limb-sculpture.png",
+  },
 ];
 
 export const featuredArtworks = artworks.filter((a) => a.featured);
