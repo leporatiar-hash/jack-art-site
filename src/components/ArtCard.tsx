@@ -1,11 +1,23 @@
 import Image from "next/image";
+import type { ElementType } from "react";
 import type { Artwork } from "@/data/artworks";
 
-export default function ArtCard({ art }: { art: Artwork }) {
+export default function ArtCard({
+  art,
+  onClick,
+}: {
+  art: Artwork;
+  onClick?: () => void;
+}) {
   const mediumYear = [art.medium, art.year].filter(Boolean).join(" · ");
+  const Root = (onClick ? "button" : "figure") as ElementType;
 
   return (
-    <figure className="group relative mb-6 break-inside-avoid overflow-hidden bg-white ring-1 ring-line">
+    <Root
+      type={onClick ? "button" : undefined}
+      onClick={onClick}
+      className="group relative mb-6 block w-full break-inside-avoid overflow-hidden bg-white text-left ring-1 ring-line"
+    >
       <div className="relative w-full">
         <Image
           src={art.image}
@@ -28,6 +40,6 @@ export default function ArtCard({ art }: { art: Artwork }) {
         {mediumYear ? <p className="placard mt-1">{mediumYear}</p> : null}
         {art.detail ? <p className="placard mt-0.5">{art.detail}</p> : null}
       </figcaption>
-    </figure>
+    </Root>
   );
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ArtCard from "@/components/ArtCard";
+import ArtworkGallery from "@/components/ArtworkGallery";
 import { featuredArtworks } from "@/data/artworks";
 
 export default function Home() {
@@ -39,10 +39,8 @@ export default function Home() {
             View all
           </Link>
         </div>
-        <div className="mt-8 columns-1 gap-6 sm:columns-2 lg:columns-3">
-          {featuredArtworks.map((art) => (
-            <ArtCard key={art.slug} art={art} />
-          ))}
+        <div className="mt-8">
+          <ArtworkGallery artworks={featuredArtworks} />
         </div>
       </section>
     </>

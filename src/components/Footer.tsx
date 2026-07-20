@@ -6,7 +6,6 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <p className="placard">Jack — Graphic Art &amp; Drawing · {new Date().getFullYear()}</p>
         <div className="flex gap-6">
-          {/* TODO: real Instagram handle */}
           <Link href="/commission" className="placard link-underline">
             Commissions open
           </Link>
@@ -19,7 +18,7 @@ export default function Footer() {
             Sticker Mule
           </a>
           <a
-            href="https://instagram.com"
+            href="https://instagram.com/assreverie"
             className="placard link-underline"
             target="_blank"
             rel="noreferrer"
