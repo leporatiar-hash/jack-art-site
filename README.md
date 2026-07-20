@@ -8,7 +8,7 @@ One Next.js app on Vercel. No separate backend.
 - **Next.js (App Router) + TypeScript** — pages and API routes in one deploy
 - **Tailwind** — styling via design tokens in `tailwind.config.ts`
 - **Vercel** — hosting (serverless API routes handle the dynamic bits)
-- **Resend** — delivers commission requests to Jack's inbox
+- **Gmail SMTP (nodemailer)** — delivers commission requests to Jack's inbox, free
 - **Sticker Mule** — the shop; site links out to Jack's storefront, no inventory or custom payments here
 
 ## Run it locally
@@ -20,7 +20,7 @@ npm run dev                  # http://localhost:3000
 ```
 
 The commission form works before any keys are set — it just logs the
-submission to the server console until Resend is configured.
+submission to the server console until Gmail is configured.
 
 ## Deploy to Vercel
 
@@ -38,7 +38,7 @@ src/
     gallery/page.tsx      Full gallery grid
     shop/page.tsx         Store — links out to Sticker Mule
     commission/page.tsx   Commission intake
-    api/commission/route  Form handler → Resend email
+    api/commission/route  Form handler → Gmail SMTP
   components/             Nav, Footer, ArtCard, CommissionForm
   data/artworks.ts        The gallery's data source (edit this to add art)
 public/art/               Image files
@@ -61,11 +61,18 @@ care where it comes from.
 shipping — no payment code, webhooks, or env vars needed here. To change
 the destination URL, edit `STICKER_MULE_URL` in `src/app/shop/page.tsx`.
 
-## Wiring commissions (Resend)
+## Wiring commissions (Gmail SMTP)
 
-1. Create a free account at resend.com and generate an API key.
-2. Set `RESEND_API_KEY`, `COMMISSION_TO_EMAIL`, and `COMMISSION_FROM_EMAIL`.
-   Until your own domain is verified, `onboarding@resend.dev` works as the FROM.
-3. Reference-image uploads are intentionally left out of v1 (they need file
+Free, no domain verification, no paid service — just a Gmail account sending
+to itself (or anywhere).
+
+1. Turn on 2-Step Verification on the sending Gmail account, if it isn't
+   already: https://myaccount.google.com/security
+2. Generate an App Password at https://myaccount.google.com/apppasswords
+   (pick "Mail" as the app). Copy the 16-character password.
+3. Set `GMAIL_USER` (the Gmail address) and `GMAIL_APP_PASSWORD` (the app
+   password, not the account's real password) and `COMMISSION_TO_EMAIL`
+   (where requests should land — can be the same address or different).
+4. Reference-image uploads are intentionally left out of v1 (they need file
    storage). The form tells requesters to mention references so Jack can ask by
    email. Add uploads later with an S3/UploadThing step if volume justifies it.

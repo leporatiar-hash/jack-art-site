@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
 export const runtime = "nodejs";
 
@@ -56,30 +56,32 @@ export async function POST(req: Request) {
     )
     .join("");
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
   const to = process.env.COMMISSION_TO_EMAIL;
-  const from = process.env.COMMISSION_FROM_EMAIL || "onboarding@resend.dev";
 
   // Not configured yet: don't fail the person filling out the form.
   // Log it so nothing is lost while you finish setup.
-  if (!apiKey || !to) {
+  if (!gmailUser || !gmailAppPassword || !to) {
     console.warn(
-      "[commission] RESEND_API_KEY / COMMISSION_TO_EMAIL not set. Submission:",
+      "[commission] GMAIL_USER / GMAIL_APP_PASSWORD / COMMISSION_TO_EMAIL not set. Submission:",
       rows
     );
     return NextResponse.json({ ok: true, delivered: false });
   }
 
   try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from,
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user: gmailUser, pass: gmailAppPassword },
+    });
+    await transporter.sendMail({
+      from: `Commissions <${gmailUser}>`,
       to,
       replyTo: email,
       subject: `Commission request — ${name}`,
       html,
     });
-    if (error) throw new Error(error.message);
     return NextResponse.json({ ok: true, delivered: true });
   } catch (err) {
     console.error("[commission] send failed:", err);
