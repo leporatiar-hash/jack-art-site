@@ -9,7 +9,7 @@ One Next.js app on Vercel. No separate backend.
 - **Tailwind** — styling via design tokens in `tailwind.config.ts`
 - **Vercel** — hosting (serverless API routes handle the dynamic bits)
 - **Resend** — delivers commission requests to Jack's inbox
-- **Print-on-demand** (you pick) — the shop; no inventory, no custom payments
+- **Sticker Mule** — the shop; site links out to Jack's storefront, no inventory or custom payments here
 
 ## Run it locally
 
@@ -36,7 +36,7 @@ src/
   app/
     page.tsx              Home — wordmark hero + featured work
     gallery/page.tsx      Full gallery grid
-    shop/page.tsx         Store (placeholder — see below)
+    shop/page.tsx         Store — links out to Sticker Mule
     commission/page.tsx   Commission intake
     api/commission/route  Form handler → Resend email
   components/             Nav, Footer, ArtCard, CommissionForm
@@ -54,23 +54,12 @@ himself without touching code, replace the array with a fetch to a headless
 CMS (Sanity is the usual pick) — the components read `Artwork[]` and don't
 care where it comes from.
 
-## Wiring the shop
+## The shop
 
-The shop page ships as placeholder cards. Two routes, pick one:
-
-**A — Fourthwall (fastest).** Create products in Fourthwall (it can print via
-Printful behind the scenes), then use their Storefront API + the ready
-Vercel/Next.js template to render products and hand off to their hosted
-checkout. You write no payment code.
-
-**B — Printful + Stripe (most control).** Fetch products from the Printful
-API, render them, and add a `/api/checkout` route that creates a Stripe
-Checkout session. A `/api/webhook` route listens for
-`checkout.session.completed` and creates the Printful order. Env keys for both
-are stubbed in `.env.example`.
-
-Start with A unless you need the store to look pixel-identical to the rest of
-the site. You can move to B later without touching the gallery or commissions.
+`/shop` is a static page that links out to Jack's Sticker Mule storefront
+(stickermule.com/jlep). Sticker Mule handles printing, checkout, and
+shipping — no payment code, webhooks, or env vars needed here. To change
+the destination URL, edit `STICKER_MULE_URL` in `src/app/shop/page.tsx`.
 
 ## Wiring commissions (Resend)
 

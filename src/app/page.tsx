@@ -7,7 +7,7 @@ export default function Home() {
     <>
       {/* Hero: the name treated like a gallery banner. */}
       <section className="mx-auto max-w-6xl px-5 pb-10 pt-16 sm:px-8 sm:pt-24">
-        <p className="placard">Painter · Charleston &amp; Connecticut</p>
+        <p className="placard">Graphic Art &amp; Drawing · CT</p>
         <h1 className="wordmark mt-4">
           Jack
           <br />
@@ -15,15 +15,15 @@ export default function Home() {
         </h1>
         <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
           {/* TODO: Jack's real one-paragraph statement. Keep it plain and specific. */}
-          Original paintings and works on paper. New pieces are added as they
-          leave the studio. Prints and commissions available.
+          Original graphic art and drawings. New pieces are added as they
+          leave the studio. Stickers, tees, and commissions available.
         </p>
         <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
           <Link href="/gallery" className="placard link-underline">
             See the work
           </Link>
           <Link href="/shop" className="placard link-underline">
-            Shop prints &amp; tees
+            Shop stickers &amp; tees
           </Link>
           <Link href="/commission" className="placard link-underline">
             Request a commission

@@ -2,64 +2,37 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Shop — Jack",
-  description: "T-shirts and prints, made to order.",
+  description: "Stickers and tees, printed by Sticker Mule.",
 };
 
-// Placeholder catalogue. Replace with a fetch to your POD provider
-// (Fourthwall Storefront API, or Printful products), then render real
-// prices, variants, and a checkout button. See README "Wiring the shop".
-const products = [
-  { name: "Untitled (I) — Tee", price: "$32", note: "Bella+Canvas · made to order" },
-  { name: "Study, Morning — Tee", price: "$32", note: "Bella+Canvas · made to order" },
-  { name: "Nightwork — Print", price: "$45", note: "Giclée · 18 × 24 in" },
-];
+const STICKER_MULE_URL = "https://www.stickermule.com/jlep";
 
 export default function ShopPage() {
   return (
     <section className="mx-auto max-w-6xl px-5 pt-16 sm:px-8 sm:pt-24">
-      <p className="placard">Made to order · ships worldwide</p>
+      <p className="placard">Printed by Sticker Mule</p>
       <h1 className="section-title mt-3">Shop</h1>
       <p className="mt-4 max-w-xl text-muted">
-        Tees and prints are produced on demand — nothing is warehoused, so each
-        order is printed and shipped when you buy it.
+        Stickers and tees are sold through Jack&apos;s Sticker Mule storefront —
+        checkout, printing, and shipping all happen there.
       </p>
 
-      {/* Integration reminder — delete once the store is live. */}
-      <div className="mt-8 border border-line bg-white p-4 text-sm text-muted">
-        <span className="placard">Setup note</span>
-        <p className="mt-2">
-          These cards are placeholders. Connect a print-on-demand provider and
-          replace this grid with real products + a checkout button. The README
-          walks through both routes (Fourthwall, or Printful + Stripe). No
-          separate backend needed — checkout is handled by the provider or a
-          Next.js API route.
+      <div className="mt-10 border border-line bg-white p-8 sm:p-10">
+        <p className="font-display text-2xl font-semibold">
+          Visit the Sticker Mule store
         </p>
-      </div>
-
-      <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => (
-          <div key={p.name} className="group border border-line bg-white">
-            <div className="flex aspect-square items-center justify-center bg-paper">
-              <span className="placard">Product image</span>
-            </div>
-            <div className="border-t border-line p-4">
-              <p className="font-display text-base font-semibold">{p.name}</p>
-              <p className="placard mt-1">{p.note}</p>
-              <div className="mt-4 flex items-center justify-between">
-                <span className="font-display text-lg font-semibold">
-                  {p.price}
-                </span>
-                <button
-                  type="button"
-                  disabled
-                  className="placard cursor-not-allowed border border-line px-3 py-2 text-muted"
-                >
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+        <p className="mt-2 max-w-md text-muted">
+          Browse and buy stickers, tees, and prints directly — orders ship
+          from Sticker Mule, not from this site.
+        </p>
+        <a
+          href={STICKER_MULE_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-6 inline-block bg-ink px-6 py-3 font-display font-semibold text-paper transition-opacity hover:opacity-90"
+        >
+          Shop on Sticker Mule ↗
+        </a>
       </div>
     </section>
   );
