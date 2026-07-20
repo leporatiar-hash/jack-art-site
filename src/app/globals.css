@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: #0f0f0f;
+    color: #ffffff;
+  }
+
+  /* Visible keyboard focus everywhere. */
+  :focus-visible {
+    outline: 2px solid theme("colors.ink");
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* --- The signature: a museum wall label. Reused in nav, captions, footer. --- */
+  .placard {
+    @apply font-body text-[0.68rem] uppercase tracking-placard text-muted;
+  }
+
+  /* Big curatorial wordmark, fluid from mobile to desktop. */
+  .wordmark {
+    @apply font-display font-extrabold leading-[0.92] tracking-[-0.02em];
+    font-size: clamp(2.75rem, 11vw, 8.5rem);
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-semibold tracking-[-0.01em] sm:text-4xl;
+  }
+
+  /* Quiet link with a placard-style underline reveal. */
+  .link-underline {
+    @apply relative inline-block text-ink transition-colors hover:text-ink;
+  }
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-ink transition-transform duration-300;
+  }
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    @apply scale-x-100;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
