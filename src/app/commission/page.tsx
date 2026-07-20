@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import CommissionForm from "@/components/CommissionForm";
 
 export const metadata: Metadata = {
   title: "Commission — Jack",
   description: "Request an original, made-to-order piece.",
 };
+
+const INSTAGRAM_URL = "https://instagram.com/assreverie";
 
 export default function CommissionPage() {
   return (
@@ -12,13 +13,23 @@ export default function CommissionPage() {
       <p className="placard">Commissions open</p>
       <h1 className="section-title mt-3">Request a piece</h1>
       <p className="mt-4 text-muted">
-        Tell Jack what you&apos;re after. The more specific, the better —
-        subject, size, where it will live. He&apos;ll reply by email to talk
-        through scope, timeline, and price before anything is committed.
+        Send Jack a DM on Instagram if you want a commission. Include what
+        you&apos;re after — subject, size, where it will live — and he&apos;ll
+        reply to talk through scope, timeline, and price.
       </p>
 
-      <div className="mt-10">
-        <CommissionForm />
+      <div className="mt-10 border border-line bg-white p-8 sm:p-10">
+        <p className="font-display text-2xl font-semibold">
+          DM @assreverie on Instagram
+        </p>
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-6 inline-block bg-ink px-6 py-3 font-display font-semibold text-paper transition-opacity hover:opacity-90"
+        >
+          Message on Instagram ↗
+        </a>
       </div>
     </section>
   );
